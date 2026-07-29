@@ -13,27 +13,26 @@ export default function App() {
           toastOptions={{
             duration: 4000,
             style: {
-              background: '#1a1a2e',
+              background: 'rgba(14,14,24,0.95)',
+              backdropFilter: 'blur(20px)',
               color: '#e2e8f0',
-              border: '1px solid rgba(124,58,237,0.3)',
-              borderRadius: '12px',
-              fontSize: '14px',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.4)',
+              border: '1px solid rgba(139,92,246,0.2)',
+              borderRadius: '14px',
+              fontSize: '13.5px',
+              fontFamily: 'Inter, sans-serif',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04) inset',
+              padding: '14px 18px',
             },
-            success: {
-              iconTheme: { primary: '#7c3aed', secondary: '#fff' },
-            },
-            error: {
-              iconTheme: { primary: '#ef4444', secondary: '#fff' },
-            },
+            success: { iconTheme: { primary: '#8b5cf6', secondary: '#fff' } },
+            error:   { iconTheme: { primary: '#ef4444', secondary: '#fff' } },
           }}
         />
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<AuthPage />} />
-          <Route path="/signup" element={<AuthPage />} />
+          <Route path="/"          element={<Navigate to="/login" replace />} />
+          <Route path="/login"     element={<AuthPage />} />
+          <Route path="/signup"    element={<AuthPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="*"          element={<Navigate to="/login" replace />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
