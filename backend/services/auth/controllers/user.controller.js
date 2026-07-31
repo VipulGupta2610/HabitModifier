@@ -17,7 +17,7 @@ export const signup = async (req, res) => {
                 isPass: true,
                 password: hashedpass
             })
-            const sending_user = await User.findOne({ email: email }).select("-password")
+            const sending_user = await User.findOne({ email: email }).select("-password -isPass")
             return res.status(200).json({ message: "User created.", sending_user })
         }
         else {
