@@ -8,15 +8,28 @@ export const signup = async (req, res) => {
         if (isExist) {
             console.log("User already exists")
             return res.status(500).json({ message: "User already exists.Try to Login." })
-        } if (isPass) {
-            const hashedpass = await bcrypt.hash(password, 10);
-            await new User.create({
-                name:name,
-                emai:email,
-                isPass:true,
-                password:hashedpass
-            })
         }
+        if (isPass) {
+            const hashedpass = await bcrypt.hash(password, 10);
+            await  User.create({
+                name: name,
+                email: email,
+                isPass: true,
+                password: hashedpass
+            })
+            const sending_user = await User.findOne({ email: email }).select("-password")
+            return res.status(200).json({ message: "User created.", sending_user })
+        }
+        else {
+            await User.create({
+                name: name,
+                email: email,
+                isPass: false,
+            })
+            const sending_user = await User.findOne({ email: email })
+            return res.status(200).json({ message: "User created.", sending_user })
+        }
+
     } catch (error) {
         console.log("Error at signup")
         console.log(error)

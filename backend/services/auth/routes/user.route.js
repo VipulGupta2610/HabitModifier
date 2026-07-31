@@ -3,6 +3,6 @@ import { signup } from "../controllers/user.controller.js";
 
 const router = express.Router()
 
-router.post("/api/auth/signpup" , signup)
+router.post("/signup" , signup)
 
 export default router;
