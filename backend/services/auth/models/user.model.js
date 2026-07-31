@@ -8,8 +8,19 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
+      unique: true,
       required: true,
     },
+    isPass: {
+      type: Boolean,
+      default: false
+    },
+    password: {
+      type: String,
+      required: function () {
+        return this.isPass == true
+      }
+    }
   },
   { timestamps: true }
 );
